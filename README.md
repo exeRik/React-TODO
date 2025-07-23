@@ -1,12 +1,61 @@
-# React + Vite
+<!-- # 📝 React Todo List App -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive and minimalistic **Todo List** application built with **React** and **Tailwind CSS**, featuring:
 
-Currently, two official plugins are available:
+- Add, edit, delete, reorder tasks
+- Filter by status (All, Completed, Pending)
+- LocalStorage persistence
+- Dark mode toggle
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+<!-- ## 🚀 Live Demo -->
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👉 [View Live App]
+ https://blblblablaaa----hehe
+
+
+---
+
+<!-- ## 🛠️ Technologies Used -->
+
+- ⚛️ **React** (with hooks like `useState`, `useEffect`, `useRef`)
+- 🌬️ **Tailwind CSS** for fast, responsive styling
+- 💡 **Lucide Icons** for UI icons (`Trash2`, `Edit2`, `Sun`, `Moon`, etc.)
+- 🧠 **LocalStorage** for data persistence across reloads
+
+---
+
+<!-- ## ⚙️ Setup Instructions -->
+
+Follow the steps below to run this app locally:
+
+<!-- ### 1. Clone the Repository -->
+
+```bash
+git clone https://github.com/your-username/react-todo-app.git
+cd react-todo-app
+
+#  then install dependencies:
+ npm install
+
+# then start the development server 
+npm run dev
+
+
+# 🙌 Features
+
+✅ Add new todos
+
+📝 Edit and save task names
+
+❌ Delete tasks
+
+🔃 Reorder using up/down arrows
+
+🌗 Toggle dark/light mode
+
+🔍 Filter by All / Completed / Pending
+
+💾 Automatically saves todos in browser LocalStorage
+
