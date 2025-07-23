@@ -120,9 +120,9 @@ function Todo() {
 
   return (
     <div
-      className={`min-h-screen flex justify-center items-start pt-20 px-4 text-base sm:text-lg md:text-xl ${
-        darkMode ? "bg-gray-900 text-white" : "bg-[#d5dccc] text-black"
-      }`}
+       className={`min-h-screen flex justify-center items-center px-4 text-base sm:text-lg md:text-xl ${
+       darkMode ? "bg-gray-900 text-white" : "bg-[#d5dccc] text-black"
+    }`}
     >
       <div
         className={`w-full max-w-[1000px] h-[610px] overflow-y-auto p-5 rounded-md border-2 shadow-md text-center
@@ -132,20 +132,20 @@ function Todo() {
               : "bg-[#14534f] border-[#04042a] text-white"
           }`}
       >
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl sm:text-3xl font-bold">TO DO LIST</h2>
-          <button
-            onClick={toggleDarkMode}
-            className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200
-              ${
-                darkMode
-                  ? "bg-gray-400 text-gray-900 hover:bg-gray-300"
-                  : "bg-gray-800 text-white hover:bg-gray-700"
-              }`}
-            aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+        <div className="relative flex justify-center items-center mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">TO DO LIST</h2>
+              <button
+                onClick={toggleDarkMode}
+                className={`absolute right-0 px-4 py-2 rounded-md font-semibold transition-colors duration-200
+                  ${
+                    darkMode
+                      ? "bg-gray-400 text-gray-900 hover:bg-gray-300"
+                      : "bg-gray-800 text-white hover:bg-gray-700"
+                  }`}
+                aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              >
+                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 mb-4">
