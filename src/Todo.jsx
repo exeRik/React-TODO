@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { Trash2, Edit2, Save, Moon, Sun } from "lucide-react";
 
 function Todo() {
-  // === Dark mode state ===
   const savedDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
   const [darkMode, setDarkMode] = useState(savedDarkMode);
 
@@ -12,20 +11,18 @@ function Todo() {
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
-  // === Todo states ===
   const savedLists = JSON.parse(localStorage.getItem("tasks")) || [];
   const [lists, setLists] = useState(savedLists);
   const [items, setItems] = useState("");
   const [editIndex, setEditIndex] = useState(null);
   const [editText, setEditText] = useState("");
-  const [filter, setFilter] = useState("all"); // "all", "completed", "pending"
+  const [filter, setFilter] = useState("all");
   const editInputRef = useRef(null);
 
-  // Filtered todos based on filter state
   const filteredLists = lists.filter((todo) => {
     if (filter === "completed") return todo.isTicked;
     if (filter === "pending") return !todo.isTicked;
-    return true; // all
+    return true;
   });
 
   const handleInputChange = (e) => setItems(e.target.value);
@@ -38,6 +35,13 @@ function Todo() {
       localStorage.setItem("tasks", JSON.stringify(updatedLists));
       setItems("");
     }
+  };
+
+  const clearAll = () => {
+    setLists([]);
+    localStorage.setItem("tasks", JSON.stringify([]));
+    setEditIndex(null);
+    setEditText("");
   };
 
   const handleDelete = (index) => {
@@ -82,7 +86,6 @@ function Todo() {
     localStorage.setItem("tasks", JSON.stringify(updated));
   };
 
-  // Edit handlers
   const startEditing = (index) => {
     setEditIndex(index);
     setEditText(lists[index].text);
@@ -94,7 +97,7 @@ function Todo() {
   };
 
   const saveEdit = () => {
-    if (editText.trim() === "") return; // prevent empty todo
+    if (editText.trim() === "") return;
     const updatedLists = lists.map((item, i) =>
       i === editIndex ? { ...item, text: editText.trim() } : item
     );
@@ -105,11 +108,8 @@ function Todo() {
   };
 
   const handleEditKeyDown = (e) => {
-    if (e.key === "Enter") {
-      saveEdit();
-    } else if (e.key === "Escape") {
-      cancelEditing();
-    }
+    if (e.key === "Enter") saveEdit();
+    else if (e.key === "Escape") cancelEditing();
   };
 
   useEffect(() => {
@@ -125,7 +125,7 @@ function Todo() {
       }`}
     >
       <div
-        className={`w-full max-w-[1000px] p-5 rounded-md border-2 shadow-md text-center
+        className={`w-full max-w-[1000px] h-[610px] overflow-y-auto p-5 rounded-md border-2 shadow-md text-center
           ${
             darkMode
               ? "bg-gray-800 border-gray-700"
@@ -134,22 +134,20 @@ function Todo() {
       >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold">TO DO LIST</h2>
-            <button
-               onClick={toggleDarkMode}
-               className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200
-                 ${
-                   darkMode
-                     ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300"
-                     : "bg-gray-700 text-white hover:bg-gray-600"
-                 }
-               `}
-               aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+          <button
+            onClick={toggleDarkMode}
+            className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200
+              ${
+                darkMode
+                  ? "bg-gray-400 text-gray-900 hover:bg-gray-300"
+                  : "bg-gray-800 text-white hover:bg-gray-700"
+              }`}
+            aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </div>
 
-        {/* Input + Add */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 mb-4">
           <input
             id="enterList"
@@ -169,7 +167,7 @@ function Todo() {
             className={`text-base sm:text-lg px-4 py-2 rounded-md border border-transparent transition-colors duration-200
               ${
                 darkMode
-                  ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300 hover:border-yellow-300"
+                  ? "bg-gray-400 text-gray-900 hover:bg-gray-300 hover:border-gray-300"
                   : "bg-white text-black hover:border-white hover:bg-[#14534f] hover:text-white"
               }`}
           >
@@ -177,8 +175,8 @@ function Todo() {
           </button>
         </div>
 
-        {/* Filter buttons */}
-        <div className="flex justify-center gap-4 mb-6">
+        {/* Filter + Clear All */}
+        <div className="flex flex-wrap justify-center gap-4 mb-6">
           {["all", "completed", "pending"].map((f) => (
             <button
               key={f}
@@ -186,18 +184,29 @@ function Todo() {
               className={`px-4 py-1 rounded-md font-semibold transition-colors duration-200
                 ${
                   filter === f
-                    ? darkMode
-                      ? "bg-yellow-400 text-gray-900 border border-yellow-400"
-                      : "bg-white text-[#14534f] border border-[#14534f]"
+                    ?darkMode
+                     ? "bg-gray-700 text-white placeholder-gray-400"
+                     : "bg-white text-black"
                     : darkMode
-                    ? "bg-gray-700 text-gray-400 hover:bg-yellow-400 hover:text-gray-900"
-                    : "bg-[#c9d1c9] text-[#14534f] hover:bg-white hover:text-[#14534f]"
-                }
-              `}
+                    ? "bg-gray-700 text-gray-400 hover:bg-gray-400 hover:text-gray-900"
+                    : "bg-[#c9d1c9] text-[#14555f] hover:bg-white hover:text-[#14534f]"
+                }`}
             >
               {f.charAt(0).toUpperCase() + f.slice(1)}
             </button>
           ))}
+
+          <button
+            onClick={clearAll}
+            className={`px-4 py-1 rounded-md font-semibold transition-colors duration-200
+              ${
+                darkMode
+                  ? "bg-gray-700 text-gray-400 hover:bg-gray-400 hover:text-gray-900"
+                    : "bg-[#c9d1c9] text-[#14555f] hover:bg-white hover:text-[#14534f]"
+              }`}
+          >
+           Clear All
+          </button>
         </div>
 
         {/* Todo list */}
@@ -209,9 +218,7 @@ function Todo() {
           )}
 
           {filteredLists.map((list, index) => {
-            // Find original index in full list for handlers
             const originalIndex = lists.findIndex((todo) => todo === list);
-
             return (
               <li key={originalIndex}>
                 <div
@@ -241,7 +248,6 @@ function Todo() {
                         className={`text-base sm:text-lg md:text-xl px-2 py-1 rounded-md flex-grow min-w-0 ${
                           darkMode ? "bg-gray-800 text-white" : ""
                         }`}
-                        style={{ minWidth: 0 }}
                       />
                     ) : (
                       <div
@@ -259,10 +265,9 @@ function Todo() {
                       <>
                         <button
                           onClick={saveEdit}
-                          aria-label="Save"
                           className={`rounded-md border-2 px-3 py-1 flex items-center justify-center transition-colors duration-200 ${
                             darkMode
-                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              ? "bg-gray-400 text-gray-900 border-gray-400 hover:bg-gray-300"
                               : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
                           }`}
                         >
@@ -270,10 +275,9 @@ function Todo() {
                         </button>
                         <button
                           onClick={cancelEditing}
-                          aria-label="Cancel"
                           className={`rounded-md border-2 px-3 py-1 transition-colors duration-200 ${
                             darkMode
-                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              ? "bg-gray-400 text-gray-900 border-gray-400 hover:bg-gray-300"
                               : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
                           }`}
                         >
@@ -284,10 +288,9 @@ function Todo() {
                       <>
                         <button
                           onClick={() => handleDelete(originalIndex)}
-                          aria-label="Delete"
                           className={`rounded-md border-2 px-3 py-1 flex items-center justify-center transition-colors duration-200 ${
                             darkMode
-                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              ? "bg-gray-400 text-gray-900 border-gray-400 hover:bg-gray-300"
                               : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
                           }`}
                         >
@@ -297,7 +300,7 @@ function Todo() {
                           onClick={() => handleUp(originalIndex)}
                           className={`rounded-md border-2 w-[40px] py-1 transition-colors duration-200 ${
                             darkMode
-                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              ? "bg-gray-400 text-gray-900 border-gray-400 hover:bg-gray-300"
                               : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
                           }`}
                         >
@@ -307,7 +310,7 @@ function Todo() {
                           onClick={() => handleDown(originalIndex)}
                           className={`rounded-md border-2 w-[40px] py-1 transition-colors duration-200 ${
                             darkMode
-                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              ? "bg-gray-400 text-gray-900 border-gray-400 hover:bg-gray-300"
                               : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
                           }`}
                         >
@@ -315,10 +318,9 @@ function Todo() {
                         </button>
                         <button
                           onClick={() => startEditing(originalIndex)}
-                          aria-label="Edit"
                           className={`rounded-md border-2 px-3 py-1 flex items-center justify-center transition-colors duration-200 ${
                             darkMode
-                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              ? "bg-gray-400 text-gray-900 border-gray-400 hover:bg-gray-300"
                               : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
                           }`}
                         >
