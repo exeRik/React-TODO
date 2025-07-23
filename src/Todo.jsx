@@ -1,7 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Trash2, Edit2, Save } from "lucide-react";
+import { Trash2, Edit2, Save, Moon, Sun } from "lucide-react";
 
 function Todo() {
+  // === Dark mode state ===
+  const savedDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
+  const [darkMode, setDarkMode] = useState(savedDarkMode);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+
+  // === Todo states ===
   const savedLists = JSON.parse(localStorage.getItem("tasks")) || [];
   const [lists, setLists] = useState(savedLists);
   const [items, setItems] = useState("");
@@ -108,9 +119,35 @@ function Todo() {
   }, [editIndex]);
 
   return (
-    <div className="min-h-screen bg-[#d5dccc] flex justify-center items-start pt-20 px-4 text-base sm:text-lg md:text-xl">
-      <div className="bg-[#14534f] w-full max-w-[1000px] p-5 rounded-md border-2 border-[#04042a] shadow-md text-center">
-        <h2 className="text-white text-2xl sm:text-3xl font-bold mb-6">TO DO LIST</h2>
+    <div
+      className={`min-h-screen flex justify-center items-start pt-20 px-4 text-base sm:text-lg md:text-xl ${
+        darkMode ? "bg-gray-900 text-white" : "bg-[#d5dccc] text-black"
+      }`}
+    >
+      <div
+        className={`w-full max-w-[1000px] p-5 rounded-md border-2 shadow-md text-center
+          ${
+            darkMode
+              ? "bg-gray-800 border-gray-700"
+              : "bg-[#14534f] border-[#04042a] text-white"
+          }`}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">TO DO LIST</h2>
+            <button
+               onClick={toggleDarkMode}
+               className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200
+                 ${
+                   darkMode
+                     ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300"
+                     : "bg-gray-700 text-white hover:bg-gray-600"
+                 }
+               `}
+               aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+        </div>
 
         {/* Input + Add */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 mb-4">
@@ -121,11 +158,20 @@ function Todo() {
             value={items}
             onChange={handleInputChange}
             onKeyDown={handleKeyDownAdd}
-            className="text-base sm:text-lg bg-white text-black px-4 py-2 rounded-md flex-1 min-w-[200px]"
+            className={`text-base sm:text-lg px-4 py-2 rounded-md flex-1 min-w-[200px] ${
+              darkMode
+                ? "bg-gray-700 text-white placeholder-gray-400"
+                : "bg-white text-black"
+            }`}
           />
           <button
             onClick={addItem}
-            className="text-base sm:text-lg bg-white text-black px-4 py-2 rounded-md border border-transparent hover:border-white hover:bg-[#14534f] hover:text-white transition-colors duration-200"
+            className={`text-base sm:text-lg px-4 py-2 rounded-md border border-transparent transition-colors duration-200
+              ${
+                darkMode
+                  ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300 hover:border-yellow-300"
+                  : "bg-white text-black hover:border-white hover:bg-[#14534f] hover:text-white"
+              }`}
           >
             Add
           </button>
@@ -140,7 +186,11 @@ function Todo() {
               className={`px-4 py-1 rounded-md font-semibold transition-colors duration-200
                 ${
                   filter === f
-                    ? "bg-white text-[#14534f] border border-[#14534f]"
+                    ? darkMode
+                      ? "bg-yellow-400 text-gray-900 border border-yellow-400"
+                      : "bg-white text-[#14534f] border border-[#14534f]"
+                    : darkMode
+                    ? "bg-gray-700 text-gray-400 hover:bg-yellow-400 hover:text-gray-900"
                     : "bg-[#c9d1c9] text-[#14534f] hover:bg-white hover:text-[#14534f]"
                 }
               `}
@@ -153,7 +203,9 @@ function Todo() {
         {/* Todo list */}
         <ul className="space-y-4">
           {filteredLists.length === 0 && (
-            <li className="text-white italic">No todos to show.</li>
+            <li className={`${darkMode ? "text-gray-400 italic" : "text-white italic"}`}>
+              No todos to show.
+            </li>
           )}
 
           {filteredLists.map((list, index) => {
@@ -162,7 +214,14 @@ function Todo() {
 
             return (
               <li key={originalIndex}>
-                <div className="bg-[#ebe6e6] text-black rounded-md p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div
+                  className={`rounded-md p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4
+                    ${
+                      darkMode
+                        ? "bg-gray-700 text-white"
+                        : "bg-[#ebe6e6] text-black"
+                    }`}
+                >
                   <div className="flex items-center gap-4 sm:max-w-[500px] w-full">
                     <input
                       type="checkbox"
@@ -179,7 +238,9 @@ function Todo() {
                         onChange={(e) => setEditText(e.target.value)}
                         onKeyDown={handleEditKeyDown}
                         onBlur={saveEdit}
-                        className="text-base sm:text-lg md:text-xl px-2 py-1 rounded-md flex-grow"
+                        className={`text-base sm:text-lg md:text-xl px-2 py-1 rounded-md flex-grow min-w-0 ${
+                          darkMode ? "bg-gray-800 text-white" : ""
+                        }`}
                         style={{ minWidth: 0 }}
                       />
                     ) : (
@@ -199,14 +260,22 @@ function Todo() {
                         <button
                           onClick={saveEdit}
                           aria-label="Save"
-                          className="bg-[rgba(213,220,204,0.384)] text-black rounded-md border-2 border-black px-3 py-1 hover:bg-[#14534f] hover:text-white flex items-center justify-center"
+                          className={`rounded-md border-2 px-3 py-1 flex items-center justify-center transition-colors duration-200 ${
+                            darkMode
+                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
+                          }`}
                         >
                           <Save size={20} />
                         </button>
                         <button
                           onClick={cancelEditing}
                           aria-label="Cancel"
-                          className="bg-[rgba(213,220,204,0.384)] text-black rounded-md border-2 border-black px-3 py-1 hover:bg-[#14534f] hover:text-white"
+                          className={`rounded-md border-2 px-3 py-1 transition-colors duration-200 ${
+                            darkMode
+                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
+                          }`}
                         >
                           Cancel
                         </button>
@@ -216,26 +285,42 @@ function Todo() {
                         <button
                           onClick={() => handleDelete(originalIndex)}
                           aria-label="Delete"
-                          className="bg-[rgba(213,220,204,0.384)] text-black rounded-md border-2 border-black px-3 py-1 hover:bg-[#14534f] hover:text-white flex items-center justify-center"
+                          className={`rounded-md border-2 px-3 py-1 flex items-center justify-center transition-colors duration-200 ${
+                            darkMode
+                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
+                          }`}
                         >
                           <Trash2 size={20} />
                         </button>
                         <button
                           onClick={() => handleUp(originalIndex)}
-                          className="bg-[rgba(213,220,204,0.384)] text-black rounded-md border-2 border-black w-[40px] py-1 hover:bg-[#14534f] hover:text-white"
+                          className={`rounded-md border-2 w-[40px] py-1 transition-colors duration-200 ${
+                            darkMode
+                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
+                          }`}
                         >
                           ↑
                         </button>
                         <button
                           onClick={() => handleDown(originalIndex)}
-                          className="bg-[rgba(213,220,204,0.384)] text-black rounded-md border-2 border-black w-[40px] py-1 hover:bg-[#14534f] hover:text-white"
+                          className={`rounded-md border-2 w-[40px] py-1 transition-colors duration-200 ${
+                            darkMode
+                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
+                          }`}
                         >
                           ↓
                         </button>
                         <button
                           onClick={() => startEditing(originalIndex)}
                           aria-label="Edit"
-                          className="bg-[rgba(213,220,204,0.384)] text-black rounded-md border-2 border-black px-3 py-1 hover:bg-[#14534f] hover:text-white flex items-center justify-center"
+                          className={`rounded-md border-2 px-3 py-1 flex items-center justify-center transition-colors duration-200 ${
+                            darkMode
+                              ? "bg-yellow-400 text-gray-900 border-yellow-400 hover:bg-yellow-300"
+                              : "bg-[rgba(213,220,204,0.384)] text-black border-black hover:bg-[#14534f] hover:text-white"
+                          }`}
                         >
                           <Edit2 size={20} />
                         </button>
