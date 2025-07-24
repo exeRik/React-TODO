@@ -6,6 +6,6 @@ export default defineConfig({
   base: "/react-todo-list/",
   plugins: [
     react(),
-    tailwindcss(), // make sure this is imported!
+    tailwindcss(),
   ],
 })
