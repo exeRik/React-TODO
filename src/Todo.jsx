@@ -7,7 +7,7 @@ function Todo() {
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
+  }, [darkMode]); 
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
