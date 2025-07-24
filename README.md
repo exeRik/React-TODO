@@ -12,7 +12,7 @@ A responsive and minimalistic **Todo List** application built with **React** and
 <!-- ## 🚀 Live Demo -->
 
 👉 [View Live App]
- https://blblblablaaa----hehe
+https://exerik.github.io/React-TODO/
 
 
 ---
