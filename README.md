@@ -33,8 +33,8 @@ Follow the steps below to run this app locally:
 <!-- ### 1. Clone the Repository -->
 
 ```bash
-git clone https://github.com/exeRik/React-TODO.git
-cd React-TODO
+git clone https://github.com/exeRik/react-todo-list.git
+cd react-todo-list
 
 #  then install dependencies:
 npm install
