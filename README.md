@@ -59,9 +59,8 @@ npm run dev
 
 
 📸 Screenshots
-![Light Mode](/lightmode.png)
-<br>
- ![Dark Mode](/darkmode.png)
+<img src="/react-todo-list/darkmode.png" alt="Dark Mode" />
+<img src="/react-todo-list/lightmode.png" alt="Light Mode" />
 ---
 
 ## 🛠️ Technologies Used
