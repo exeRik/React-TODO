@@ -9,7 +9,6 @@ const Header = ({ darkMode, toggleDarkMode }) => {
         onClick={toggleDarkMode}
         className={`absolute right-0 px-4 py-2 rounded-md font-semibold transition-colors duration-200
           ${darkMode ? "bg-gray-400 text-gray-900 hover:bg-gray-300" : "bg-gray-800 text-white hover:bg-gray-700"}`}
-        aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
       >
         {darkMode ? <Sun size={20} /> : <Moon size={20} />}
       </button>
