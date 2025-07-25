@@ -59,9 +59,9 @@ npm run dev
 
 
 📸 Screenshots
-![Light Mode](public/lightmode.png)
+![Light Mode](/lightmode.png)
 <br>
- ![Dark Mode](public/darkmode.png)
+ ![Dark Mode](/darkmode.png)
 ---
 
 ## 🛠️ Technologies Used
