@@ -43,19 +43,49 @@ npm install
 npm run dev
 
 
-# 🙌 Features
 
-✅ Add new todos
+---
 
-📝 Edit and save task names
+## ✨ Features
 
-❌ Delete tasks
+✅ Add new tasks  
+📝 Edit task names  
+❌ Delete tasks  
+🔃 Reorder tasks (move up/down)  
+🔍 Filter tasks by **All**, **Completed**, or **Pending**  
+🌗 Toggle between **Dark Mode** and **Light Mode**  
+💾 Automatically saves data to **LocalStorage** for persistence  
+📱 Fully responsive design for mobile and desktop
 
-🔃 Reorder using up/down arrows
 
-🌗 Toggle dark/light mode
+📸 Screenshots
+<p align="center">
+  <<img width="1336" height="864" alt="image" src="https://github.com/user-attachments/assets/5c70e36d-c5b8-461e-9b00-45a78b53eeb3" />
 
-🔍 Filter by All / Completed / Pending
+</p>
+<p align="center">
+  <img width="1316" height="839" alt="image" src="https://github.com/user-attachments/assets/77aa00c0-9edf-4429-931c-626799d51194" />
 
-💾 Automatically saves todos in browser LocalStorage
+</p>
+<p align="center">
+  <img width="1342" height="850" alt="image" src="https://github.com/user-attachments/assets/33db417a-cf96-439a-b481-b1fb6b12fcf9" />
+</p>
+
+---
+
+## 🛠️ Technologies Used
+
+| Tech           | Description                                                   |
+|----------------|---------------------------------------------------------------|
+| ⚛️ React        | Frontend framework using functional components and hooks      |
+| 🌬️ Tailwind CSS | Utility-first CSS framework for rapid UI styling             |
+| 💡 Lucide Icons | Icon set used for edit, delete, reorder, and theme toggle UI |
+| 💾 LocalStorage | Stores user tasks persistently across page reloads           |
+
+Used React hooks:
+- `useState`
+- `useEffect`
+- `useRef`
+
+
 
