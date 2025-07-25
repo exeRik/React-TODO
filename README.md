@@ -59,18 +59,9 @@ npm run dev
 
 
 📸 Screenshots
-<p align="center">
-  <<img width="1336" height="864" alt="image" src="https://github.com/user-attachments/assets/5c70e36d-c5b8-461e-9b00-45a78b53eeb3" />
-
-</p>
-<p align="center">
-  <img width="1316" height="839" alt="image" src="https://github.com/user-attachments/assets/77aa00c0-9edf-4429-931c-626799d51194" />
-
-</p>
-<p align="center">
-  <img width="1342" height="850" alt="image" src="https://github.com/user-attachments/assets/33db417a-cf96-439a-b481-b1fb6b12fcf9" />
-</p>
-
+![Light Mode](public/lightmode.png)
+<br>
+ ![Dark Mode](public/darkmode.png)
 ---
 
 ## 🛠️ Technologies Used
