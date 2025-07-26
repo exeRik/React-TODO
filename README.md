@@ -1,4 +1,4 @@
-<!-- # 📝 React Todo List App -->
+React Todo List App 
 
 A responsive and minimalistic **Todo List** application built with **React** and **Tailwind CSS**, featuring:
 - Add, edit, delete, reorder tasks
@@ -8,7 +8,7 @@ A responsive and minimalistic **Todo List** application built with **React** and
 
 ---
 
-<!-- ## 🚀 Live Demo -->
+ 🚀 Live Demo 
 
 👉 [View Live App]
 (https://exerik.github.io/react-todo-list/)
@@ -17,7 +17,7 @@ A responsive and minimalistic **Todo List** application built with **React** and
 ---
 
 
-<!-- ## 🛠️ Technologies Used -->
+🛠️ Technologies Used 
 
 - ⚛️ **React** (with hooks like `useState`, `useEffect`, `useRef`)
 - 🌬️ **Tailwind CSS** for fast, responsive styling
@@ -38,13 +38,16 @@ A responsive and minimalistic **Todo List** application built with **React** and
  ----
  
 
+
+
+
+```bash
+
 <!-- ## ⚙️ Setup Instructions -->
 
 Follow the steps below to run this app locally:
 
 <!-- ### 1. Clone the Repository -->
-
-```bash
 git clone https://github.com/exeRik/react-todo-list.git
 cd react-todo-list
 
@@ -111,7 +114,6 @@ react-todo-list/
 Contributions are welcome!
 Feel free to fork the repo and submit a pull request.
 
-```bash
 # 1. Fork the repository
 # 2. Create your feature branch
 git checkout -b feature/AmazingFeature
