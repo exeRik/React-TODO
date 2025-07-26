@@ -5,6 +5,11 @@ A responsive and minimalistic **Todo List** application built with **React** and
 - Filter by status (All, Completed, Pending)
 - LocalStorage persistence
 - Dark mode toggle
+- - ⚛️ **React** (with hooks like `useState`, `useEffect`, `useRef`)
+- 🌬️ **Tailwind CSS** for fast, responsive styling
+- 💡 **Lucide Icons** for UI icons (`Trash2`, `Edit2`, `Sun`, `Moon`, etc.)
+- 🧠 **LocalStorage** for data persistence across reloads
+
 
 ---
 
@@ -12,17 +17,6 @@ A responsive and minimalistic **Todo List** application built with **React** and
 
 👉 [View Live App]
 (https://exerik.github.io/react-todo-list/)
-
-
----
-
-
-🛠️ Technologies Used 
-
-- ⚛️ **React** (with hooks like `useState`, `useEffect`, `useRef`)
-- 🌬️ **Tailwind CSS** for fast, responsive styling
-- 💡 **Lucide Icons** for UI icons (`Trash2`, `Edit2`, `Sun`, `Moon`, etc.)
-- 🧠 **LocalStorage** for data persistence across reloads
 
 ---
 ## ✨ Features
