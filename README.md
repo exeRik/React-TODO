@@ -58,11 +58,6 @@ npm run dev
 📱 Fully responsive design for mobile and desktop
 
 
-📸 Screenshots
-<img src="/react-todo-list/darkmode.png" alt="Dark Mode" />
-<img src="/react-todo-list/lightmode.png" alt="Light Mode" />
----
-
 ## 🛠️ Technologies Used
 
 | Tech           | Description                                                   |
